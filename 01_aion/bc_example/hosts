@@ -1,0 +1,17 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+192.168.10.2    bootstrap.beezy.cloud     bootstrap
+
+192.168.10.3    m01.beezy.cloud   m01
+192.168.10.5    m02.beezy.cloud   m02
+192.168.10.7    m03.beezy.cloud   m03
+
+192.168.10.11   w01.beezy.cloud   w01
+192.168.10.13   w02.beezy.cloud   w02
+192.168.10.15   w03.beezy.cloud   w03
+192.168.10.17   w04.beezy.cloud   w04
+192.168.10.19   w05.beezy.cloud   w05 
+
+192.168.10.10   bastion.beezy.cloud       bastion
+192.168.10.10   git.beezy.cloud           git
