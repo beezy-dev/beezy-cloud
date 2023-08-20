@@ -1,0 +1,66 @@
+### dnsmasq.conf for a 6-nodes cloud ### 
+domain-needed
+bogus-priv
+#no-resolv
+server=1.1.1.1
+server=1.0.0.1
+local=/{{ labdomain }}/
+listen-address=127.0.0.1,{{ dhcpiprange }}.10
+expand-hosts
+domain={{ labdomain }}
+
+# bastion hosts records
+address=/bastion.{{ labdomain }}/{{ dhcpiprange }}.10
+ptr-record=10.{{ ptriprange }}.in-addr.arpa,bastion.{{ labdomain }}
+address=/git.{{ labdomain }}/{{ dhcpiprange }}.10
+ptr-record=10.{{ ptriprange }}.in-addr.arpa,git.{{ labdomain }}
+
+# bootstrap
+address=/bootstrap.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.2
+ptr-record=2.{{ ptriprange }}.in-addr.arpa,bootstrap.{{ clustername }}.{{ labdomain }}
+
+# master01 records 
+address=/m01.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.3
+address=/etcd-0.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.3
+ptr-record=3.{{ ptriprange }}.in-addr.arpa,m01.{{ clustername }}.{{ labdomain }}
+
+# master02 records 
+address=/m02.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.5
+ptr-record=5.{{ ptriprange }}.in-addr.arpa,m02.{{ clustername }}.{{ labdomain }}
+
+# master03 records 
+address=/m03.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.7
+ptr-record=7.{{ ptriprange }}.in-addr.arpa,m03.{{ clustername }}.{{ labdomain }}
+
+# node01 records 
+address=/w01.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.11
+ptr-record=11.{{ ptriprange }}.in-addr.arpa,w01.{{ clustername }}.{{ labdomain }}
+# node02 records 
+address=/w02.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.13
+ptr-record=13.{{ ptriprange }}.in-addr.arpa,w02.{{ clustername }}.{{ labdomain }}
+# node03 records 
+address=/w03.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.15
+ptr-record=15.{{ ptriprange }}.in-addr.arpa,w03.{{ clustername }}.{{ labdomain }}
+# node04 records 
+address=/w04.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.17
+ptr-record=17.{{ ptriprange }}.in-addr.arpa,w04.{{ clustername }}.{{ labdomain }}
+# node05 records 
+address=/w05.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.19
+ptr-record=19.{{ ptriprange }}.in-addr.arpa,w05.{{ clustername }}.{{ labdomain }}
+# node06 records 
+address=/w06.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.21
+ptr-record=21.{{ ptriprange }}.in-addr.arpa,w06.{{ clustername }}.{{ labdomain }}
+
+# cluster records
+# API  
+address=/api.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.10
+ptr-record=10.{{ ptriprange }}.in-addr.arpa,api.{{ clustername }}.{{ labdomain }}
+# API-INT
+address=/api-int.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.10
+ptr-record=10.{{ ptriprange }}.in-addr.arpa,api-int.{{ clustername }}.{{ labdomain }}
+# APPS
+address=/apps.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.10
+
+address=/console-openshift-console.apps.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.10
+address=/oauth-openshift.apps.{{ clustername }}.{{ labdomain }}/{{ dhcpiprange }}.10
+srv-host=_etcd-server-ssl._tcp.{{ clustername }}.{{ labdomain }},etcd-0.{{ clustername }}
